@@ -1,0 +1,41 @@
+{
+  "name": "Assignment13",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "debug": "~2.6.3",
+    "express": "^4.15.3",
+    "jade": "^1.11.0",
+    "mongoose": "^5.8.1",
+    "morgan": "^1.8.2",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.12.0",
+    "react-scripts": "1.0.10"
+  },
+  "scripts": {
+    "start": "concurrently \"react-scripts start\" \"nodemon server/server.js\"",
+    "build": "react-scripts build && mv build server",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:3001",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alpeshic/Assignment13.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alpeshic/Assignment13/issues"
+  },
+  "homepage": "https://github.com/alpeshic/Assignment13#readme"
+}
