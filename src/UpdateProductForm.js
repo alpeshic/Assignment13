@@ -6,7 +6,7 @@ class UpdateProductForm extends Component {
     constructor(props) {
         super(props)
         this.handleChange = this.handleChange.bind(this)
-        this.handleSave = this.handleSave.bind(this)
+        this.handleUpdate = this.handleUpdate.bind(this)
         this.handleCancel = this.handleCancel.bind(this)
         this.state = {
             product: "",
@@ -33,8 +33,8 @@ class UpdateProductForm extends Component {
         this.props.handleCancelUpdate();
         e.preventDefault()
     }
-    handleSave(e) {
-        this.props.onSave(this.state.product);
+    handleUpdate(e) {
+        this.props.onUpdate(this.state.product);
         // reset the form values to blank after submitting
         this.setState({
             product: Object.assign({}, RESET_VALUES), 
@@ -45,10 +45,11 @@ class UpdateProductForm extends Component {
     }
 
     render () {
-        console.log(this.state.product)
+        console.log(this.props.product)
         return (
             <form>
                 <h4>Update product</h4>
+                <input type="hidden" value={this.props.product._id} />
                 <p>
                     <label>Name <br /> 
                     <input type="text" className="form-control" name="name" onChange={this.handleChange} value={this.props.product.name} /></label>
@@ -65,7 +66,7 @@ class UpdateProductForm extends Component {
                     <label>In Stock <br /> 
                     <input type="checkbox" className="form-control" name="instock" onChange={this.handleChange} value={this.props.product.instock} /></label>
                 </p>
-                <input type="submit" className="btn btn-info" value="Save" onClick={this.handleSave}></input>
+                <input type="submit" className="btn btn-info" value="Save" onClick={this.handleUpdate}></input>
    
                 <input type="submit" className="btn btn-info" value="Cancel" onClick={this.handleCancel}></input>
             </form>

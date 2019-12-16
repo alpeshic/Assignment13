@@ -39,6 +39,12 @@ router.post('/product/create', function(req, res){
     }
   })
 })
+router.post('/product/update', function(req, res){
+  var product = new Product(req.body)
+  Product.updateOne( product)
+  
+})
+
 
 router.get('/product/delete', function(req, res){
   var product = new Product(req.body)

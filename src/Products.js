@@ -23,7 +23,7 @@ class Products extends Component {
             showNewProductForm: true
         }
         this.handleFilter = this.handleFilter.bind(this)
-        this.handleUpdate = this.handleUpdate.bind(this)
+        this.handleUpdateClick = this.handleUpdateClick.bind(this)
         this.handleDestroy = this.handleDestroy.bind(this)
         this.handleSave = this.handleSave.bind(this)
         this.handleCancelUpdate = this.handleCancelUpdate.bind(this)
@@ -35,6 +35,18 @@ class Products extends Component {
     }
     handleCancelUpdate(){
         this.setState({showNewProductForm : true, updateProduct : ''})
+    }
+    handleUpdateSave(product){
+        fetch('/product/update', {
+            method: 'POST',
+            body: JSON.stringify(product),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+              }
+        }).then(this.getAllProducts())
+          .then( this.setState({showNewProductForm : true, updateProduct : ''}))
+
     }
     handleSave(product) {
         if (!product.id) {
@@ -65,7 +77,7 @@ class Products extends Component {
         //     return { products }
         // })
     }
-    handleUpdate(productId) {
+    handleUpdateClick(productId) {
         this.setState((prevState) => {
             this.setState({showNewProductForm : false})
             // fetch('/product/delete', {
@@ -120,7 +132,7 @@ class Products extends Component {
             onSave={this.handleSave}></ProductForm>
         } else {
             productForm =<UpdateProductForm
-                    onSave={this.handleSave} 
+                    onUpdate={this.handleUpdateSave} 
                     onCancelUpdate={this.handleCancelUpdate}
                     product = {this.state.updateProduct}></UpdateProductForm>
         }
@@ -134,7 +146,7 @@ class Products extends Component {
                     products={this.state.products}
                     filterText={this.state.filterText}
                     onDestroy={this.handleDestroy}
-                    onUpdate={this.handleUpdate}></ProductTable>
+                    onUpdate={this.handleUpdateClick}></ProductTable>
                 {productForm}
                 
                 
